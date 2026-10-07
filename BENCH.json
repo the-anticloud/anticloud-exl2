@@ -1,0 +1,480 @@
+{
+ "schema": "anticloud.tier-bench/1",
+ "project": "EXL2",
+ "source": {
+  "repo_path": "E:\\fenta\\Downloads\\The Anticloud\\ANTICLOUD_REPOS\\CHIP_QUANTIZATION\\EXL2\\UPSTREAM_CLONE",
+  "git": {
+   "head": "REMOVED_CONTAMINATED_SHA_PENDING_API_RESOLVE",
+   "url": "https://github.com/the-anticloud/OPENMRS_CORE.git",
+   "branch": "master",
+   "committed_at": "2026-09-29T11:06:59+04:00",
+   "sha_verified_from": "local clone .git file read (no .git dir in clone)"
+  }
+ },
+ "metrics": {
+  "files_total": 289,
+  "source_files_scanned": 190,
+  "lines_of_code": 43421,
+  "languages": {
+   ".py": 120,
+   ".cuh": 34,
+   ".png": 32,
+   ".cu": 28,
+   ".h": 23,
+   ".cpp": 19,
+   ".txt": 13,
+   ".utf8": 7,
+   ".md": 5,
+   "(none)": 2,
+   ".jpg": 2,
+   ".in": 1,
+   ".typed": 1,
+   ".ipynb": 1,
+   ".gif": 1
+  }
+ },
+ "licence": {
+  "spdx": "MIT",
+  "class": "A",
+  "source_file": "LICENSE",
+  "redistribution_allowed": true
+ },
+ "dependencies": {
+  "count": 3,
+  "unique": 3,
+  "by_ecosystem": {
+   "pypi": 3
+  },
+  "list": [
+   {
+    "ecosystem": "pypi",
+    "name": "torch",
+    "version": ">=2.2.0",
+    "source_file": "setup.py",
+    "raw": "torch>=2.2.0"
+   },
+   {
+    "ecosystem": "pypi",
+    "name": "safetensors",
+    "version": ">=0.3.2",
+    "source_file": "setup.py",
+    "raw": "safetensors>=0.3.2"
+   },
+   {
+    "ecosystem": "pypi",
+    "name": "pillow",
+    "version": ">=9.1.0",
+    "source_file": "setup.py",
+    "raw": "pillow>=9.1.0"
+   }
+  ]
+ },
+ "owasp_top10": {
+  "total_findings": 25,
+  "files_with_findings": 25,
+  "severity": {
+   "high": 4,
+   "medium": 1,
+   "low": 20
+  },
+  "categories": {
+   "A01-BrokenAccessControl": {
+    "count": 0,
+    "findings": []
+   },
+   "A02-CryptographicFailures": {
+    "count": 3,
+    "findings": [
+     {
+      "severity": "high",
+      "file": "exllamav2/generator/streaming.py",
+      "line": 884,
+      "cwe": "CWE-338",
+      "snippet": "token, _, _, prob, _ = ExLlamaV2Sampler.sample(logits, draft_gen_settings, draft_sequence_ids, random.random(), self.tokenizer, prefix_token if k == 0 else None)"
+     },
+     {
+      "severity": "medium",
+      "file": "exllamav2/exllamav2_ext/ext_quant.cpp",
+      "line": 179,
+      "cwe": "CWE-338",
+      "snippet": "std::mt19937 gen(rd());"
+     },
+     {
+      "severity": "high",
+      "file": "exllamav2/conversion/tokenize.py",
+      "line": 172,
+      "cwe": "CWE-338",
+      "snippet": "k = random.randint(0, tokenized_rows.shape[0] - 1)\n            row.append(tokenized_rows[k].unsqueeze(0))"
+     }
+    ]
+   },
+   "A03-Injection": {
+    "count": 2,
+    "findings": [
+     {
+      "severity": "high",
+      "file": "setup.py",
+      "line": 103,
+      "cwe": "CWE-95",
+      "snippet": "exec(fp.read(), version_py)"
+     },
+     {
+      "severity": "high",
+      "file": "tests/compare_quants.py",
+      "line": 88,
+      "cwe": "CWE-95",
+      "snippet": "return model.eval(), tokenizer"
+     }
+    ]
+   },
+   "A04-InsecureDesign": {
+    "count": 19,
+    "findings": [
+     {
+      "severity": "low",
+      "file": "tests/test_stloader.py",
+      "line": 62,
+      "cwe": "CWE-",
+      "snippet": "xxx = 0"
+     },
+     {
+      "severity": "low",
+      "file": "tests/test_tokenizer.py",
+      "line": 60,
+      "cwe": "CWE-",
+      "snippet": "xx                                                                                              xxxx"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/attn.py",
+      "line": 435,
+      "cwe": "CWE-",
+      "snippet": "#todo: due to the different implementions. in sm<80 devices, xformers uses less memory than it in sm>=80. There may still be room for optimization."
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/config.py",
+      "line": 253,
+      "cwe": "CWE-",
+      "snippet": "self.eos_token_id = self.eos_token_id[0]  # TODO: Figure out a way to maybe use all the EOS tokens somehow"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/embedding.py",
+      "line": 51,
+      "cwe": "CWE-",
+      "snippet": "# TODO: Figure out why pinning this tensor allocates GPU memory??"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/layernorm.py",
+      "line": 107,
+      "cwe": "CWE-",
+      "snippet": "output_fp32 = False,  # TODO:"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/model.py",
+      "line": 542,
+      "cwe": "CWE-",
+      "snippet": "loras = None  # TODO: Autosplit load with LoRAs"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/moe_mlp.py",
+      "line": 235,
+      "cwe": "CWE-",
+      "snippet": "# TODO: LoRA currently uses the Torch codepath. Needs conditional (early-exit) kernels with output scaling"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/util.py",
+      "line": 252,
+      "cwe": "CWE-",
+      "snippet": "TODO: Find a better way to respect CUDA_VISIBLE_DEVICES, perhaps pynvml?"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/generator/dynamic.py",
+      "line": 28,
+      "cwe": "CWE-",
+      "snippet": "# TODO:"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/experimental/fpx.py",
+      "line": 38,
+      "cwe": "CWE-",
+      "snippet": "# TODO document this better"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/exllamav2_ext/ext_norm.cpp",
+      "line": 89,
+      "cwe": "CWE-",
+      "snippet": "false,  // TODO: FP32 residual"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/exllamav2_ext/ext_qattn.cpp",
+      "line": 344,
+      "cwe": "CWE-",
+      "snippet": "false,  // TODO: FP32 residual"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/exllamav2_ext/ext_qattn.h",
+      "line": 81,
+      "cwe": "CWE-",
+      "snippet": "// TODO: Find a way to call this function directly without going through pybind"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/exllamav2_ext/ext_qmlp.cpp",
+      "line": 390,
+      "cwe": "CWE-",
+      "snippet": "false,  // TODO: FP32 residual"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/exllamav2_ext/cuda/h_gemm.cu",
+      "line": 14,
+      "cwe": "CWE-",
+      "snippet": "// TODO: Improve tall kernel, maybe special cases for size_n = 1, 2, 4, 8, 16"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/exllamav2_ext/cuda/q_gemm.cu",
+      "line": 231,
+      "cwe": "CWE-",
+      "snippet": "// TODO: Finish the chunking stuff"
+     },
+     {
+      "severity": "low",
+      "file": "exllamav2/exllamav2_ext/cuda/softcap.cu",
+      "line": 40,
+      "cwe": "CWE-",
+      "snippet": "// TODO: Profile"
+     },
+     {
+      "severity": "low",
+      "file": "examples/multimodal_grounding_qwen.py",
+      "line": 158,
+      "cwe": "CWE-",
+      "snippet": "# \"\"\"And you may find yourself living in a shotgun shack"
+     }
+    ]
+   },
+   "A05-SecurityMisconfiguration": {
+    "count": 0,
+    "findings": []
+   },
+   "A06-VulnerableComponents": {
+    "count": 0,
+    "findings": []
+   },
+   "A07-AuthFailures": {
+    "count": 0,
+    "findings": []
+   },
+   "A08-SoftwareDataIntegrity": {
+    "count": 1,
+    "findings": [
+     {
+      "severity": "low",
+      "file": "exllamav2/exllamav2_ext/cpp/avx_mathfun.h",
+      "line": 15,
+      "cwe": "CWE-319",
+      "snippet": "http://gruntthepeon.free.fr/ssemath/"
+     }
+    ]
+   },
+   "A09-LoggingMonitoringFailures": {
+    "count": 0,
+    "findings": []
+   },
+   "A10-SSRF": {
+    "count": 0,
+    "findings": []
+   }
+  }
+ },
+ "owasp_llm_top10": {
+  "total_findings": 9,
+  "files_with_findings": 7,
+  "severity": {
+   "high": 0,
+   "medium": 5,
+   "low": 4
+  },
+  "categories": {
+   "LLM01-PromptInjection": {
+    "count": 5,
+    "findings": [
+     {
+      "severity": "medium",
+      "file": "tests/test_tokenizer.py",
+      "line": 208,
+      "cwe": "CWE-1336",
+      "snippet": "RTFTemplate rtf = builder.newRTFTemplate();"
+     },
+     {
+      "severity": "low",
+      "file": "examples/bulk_inference.py",
+      "line": 18,
+      "cwe": "CWE-1427",
+      "snippet": "system_prompt = \"You are a helpful AI assistant.\""
+     },
+     {
+      "severity": "low",
+      "file": "examples/chat.py",
+      "line": 94,
+      "cwe": "CWE-1427",
+      "snippet": "system_prompt = args.system_prompt"
+     },
+     {
+      "severity": "low",
+      "file": "examples/dynamic_gen.py",
+      "line": 62,
+      "cwe": "CWE-1427",
+      "snippet": "system_prompt = \"You are an AI assistant\""
+     },
+     {
+      "severity": "low",
+      "file": "examples/deprecated/batched_inference.py",
+      "line": 53,
+      "cwe": "CWE-1427",
+      "snippet": "system_prompt = \"Answer the question to the best of your ability.\""
+     }
+    ]
+   },
+   "LLM02-SensitiveInfoDisclosure": {
+    "count": 0,
+    "findings": []
+   },
+   "LLM03-SupplyChain": {
+    "count": 3,
+    "findings": [
+     {
+      "severity": "medium",
+      "file": "tests/compare_quants.py",
+      "line": 86,
+      "cwe": "CWE-494",
+      "snippet": "model = AutoAWQForCausalLM.from_pretrained(model_dir, device_map=\"auto\").model"
+     },
+     {
+      "severity": "medium",
+      "file": "tests/test_tokenizer.py",
+      "line": 11,
+      "cwe": "CWE-494",
+      "snippet": "reference_tokenizer = AutoTokenizer.from_pretrained(model_path)"
+     },
+     {
+      "severity": "medium",
+      "file": "experimental/multimodal_llava.py",
+      "line": 28,
+      "cwe": "CWE-494",
+      "snippet": "image_processor = LlavaNextImageProcessor.from_pretrained(\"/mnt/str/models/llava-v1.6-mistral-7b-config/\")"
+     }
+    ]
+   },
+   "LLM04-DataPoisoning": {
+    "count": 0,
+    "findings": []
+   },
+   "LLM05-ImproperOutputHandling": {
+    "count": 0,
+    "findings": []
+   },
+   "LLM06-ExcessiveAgency": {
+    "count": 0,
+    "findings": []
+   },
+   "LLM07-SystemPromptLeak": {
+    "count": 1,
+    "findings": [
+     {
+      "severity": "medium",
+      "file": "examples/chat.py",
+      "line": 296,
+      "cwe": "CWE-200",
+      "snippet": "print(f\" -- System prompt:\")"
+     }
+    ]
+   },
+   "LLM08-VectorEmbeddingWeaknesses": {
+    "count": 0,
+    "findings": []
+   },
+   "LLM09-Misinformation": {
+    "count": 0,
+    "findings": []
+   },
+   "LLM10-UnboundedConsumption": {
+    "count": 0,
+    "findings": []
+   }
+  }
+ },
+ "sbom": {
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:45b7abb9-d2e7-5a41-9fcf-5da1ea6c885a",
+  "version": 1,
+  "metadata": {
+   "timestamp": "2026-10-06T10:08:35Z",
+   "component": {
+    "type": "application",
+    "name": "EXL2",
+    "version": "83b357604d34",
+    "bom-ref": "pkg:generic/anticloud/EXL2@83b357604d34",
+    "purl": "pkg:generic/anticloud/EXL2@83b357604d34",
+    "licenses": [
+     {
+      "license": {
+       "id": "MIT"
+      }
+     }
+    ]
+   },
+   "properties": [
+    {
+     "name": "anticloud:source-commit",
+     "value": "REMOVED_CONTAMINATED_SHA_PENDING_API_RESOLVE"
+    },
+    {
+     "name": "anticloud:source-url",
+     "value": "https://github.com/the-anticloud/OPENMRS_CORE.git"
+    },
+    {
+     "name": "anticloud:tier",
+     "value": "tier-agent"
+    }
+   ]
+  },
+  "components": [
+   {
+    "type": "library",
+    "name": "torch",
+    "version": ">=2.2.0",
+    "purl": "pkg:pypi/torch@2.2.0",
+    "bom-ref": "pypi/torch@>=2.2.0"
+   },
+   {
+    "type": "library",
+    "name": "safetensors",
+    "version": ">=0.3.2",
+    "purl": "pkg:pypi/safetensors@0.3.2",
+    "bom-ref": "pypi/safetensors@>=0.3.2"
+   },
+   {
+    "type": "library",
+    "name": "pillow",
+    "version": ">=9.1.0",
+    "purl": "pkg:pypi/pillow@9.1.0",
+    "bom-ref": "pypi/pillow@>=9.1.0"
+   }
+  ]
+ },
+ "elapsed_seconds": 31.79
+}
