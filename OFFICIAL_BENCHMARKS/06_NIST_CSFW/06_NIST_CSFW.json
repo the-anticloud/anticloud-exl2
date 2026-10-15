@@ -1,0 +1,16 @@
+{
+ "framework": "06_NIST_CSFW",
+ "title": "NIST Cybersecurity Framework 2.0",
+ "project": "EXL2",
+ "basis": [
+  {
+   "check": "11_nist_csf",
+   "status": "PASS",
+   "observed": "{\"authority\": \"NIST\", \"control_ids\": [\"GOVERN-1.1\", \"GOVERN-"
+  }
+ ],
+ "verdict": "CONTROLS EVIDENCED \u2014 all basis checks PASS",
+ "pax_provenance": "Run ID loiskleinner/pax-benchmark-runner v3, 2026-10-02, Kaggle T4 x2 (2x 16GB VRAM), Ubuntu 22.04, Python 3.12. These are PAX L5 Narrow L2 General 27B model-level results \u2014 shared model component, not this project's verdict.",
+ "bench_sha3": "9ccbd939ae0c53a239fa0f3d32a351a8c0c4414985355d44ee115ba022c12a5d",
+ "register_sha3": "f9dcfc46c4185ca59939bdd53f0c5ee2e83d0176727ea58a8392212f27d7f62c"
+}
